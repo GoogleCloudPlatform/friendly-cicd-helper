@@ -14,7 +14,12 @@
 
 steps:
 - name: 'gcr.io/cloud-builders/docker'
+  id: 'build image'
   args: [ 'build', '-t', '$_IMAGE_PATH', '.' ]
+- name: '$_IMAGE_PATH'
+  id: 'print CLI help'
+  args:
+  - '--help'
 images:
 - '$_IMAGE_PATH'
 substitutions:

@@ -1,4 +1,4 @@
 click==8.1.7
-PyGithub==2.1.1
-python-gitlab==4.1.1
-google-cloud-aiplatform==1.35.0
+PyGithub==2.2.0
+python-gitlab==4.4.0
+google-cloud-aiplatform==1.42.1

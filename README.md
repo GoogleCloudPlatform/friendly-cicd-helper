@@ -54,11 +54,12 @@ Options:
   --help  Show this message and exit.
 
 Commands:
-  github-comment       This command will post a comment to a GitHub issue.
-  gitlab-comment       This command will post a comment to a Gitlab issue.
-  gitlab-mergerequest  Find the most recent Merge Request for a given...
-  vertex-code-comment  Comment on a Git Diff in the form of a summary
-  vertex-code-review   Review on a Git Diff
+  github-comment        This command will post a comment to a GitHub issue.
+  gitlab-comment        This command will post a comment to a Gitlab issue.
+  gitlab-mergerequest   Find the most recent Merge Request for a given...
+  vertex-code-review    Review on a Git Diff
+  vertex-code-summary   Write a human-readable summary of a Git Diff
+  vertex-release-notes  Write release notes for a Git Diff
 ```
 
 ## How to use the `friendly-cicd-helper`
