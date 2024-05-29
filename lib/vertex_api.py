@@ -12,10 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import vertexai
 import os
 import sys
-from vertexai.language_models import TextGenerationModel
+import vertexai
+from vertexai.generative_models import GenerativeModel
 
 if os.environ.get("VERTEX_GCP_PROJECT")==None:
     print("Please set VERTEX_GCP_PROJECT environment variable", file=sys.stderr)
@@ -27,10 +27,9 @@ if os.environ.get("VERTEX_LOCATION")!=None:
 
 vertexai.init(project=os.environ.get("VERTEX_GCP_PROJECT"), location=vertex_location)
 
-model = TextGenerationModel.from_pretrained("text-bison-32k@002")
+model = GenerativeModel("gemini-1.0-pro-002")
 
-parameters = {
-    "max_output_tokens": 1024,
+generation_config = {
     "temperature": 0,
 }
 
@@ -65,7 +64,7 @@ def code_summary(diff_path):
     Generate a code summary based on a Git diff.
     """
 
-    response = model.predict(
+    response = model.generate_content(
         f"""
 You are an experienced software engineer.
 
@@ -74,7 +73,7 @@ Provide a summary of the most important changes based on the following Git diff:
 ${load_diff(diff_path)}
 
         """,
-    **parameters
+        generation_config=generation_config
     )
     print(response.text.strip())
     return response.text
@@ -85,7 +84,7 @@ def code_review(diff_path):
     Generate a code review based on a Git diff.
     """
 
-    response = model.predict(
+    response = model.generate_content(
         f"""
 You are an experienced software engineer.
 You only comment on code that you found in the merge request diff.
@@ -95,7 +94,7 @@ improvements based on the following Git diff:
 ${load_diff(diff_path)}
 
         """,
-    **parameters
+        generation_config=generation_config
     )
     print(response.text.strip())
     return response.text
@@ -105,14 +104,14 @@ def release_notes(diff_path):
     Generate release notes based on a Git diff in unified format.
     """
 
-    response = model.predict(
+    response = model.generate_content(
         f"""
 You are an experienced tech writer.
-Write short release notes as markdown bullet points for the most important changes based on the following Git diff:
+Write short release notes in markdown bullet point format for the most important changes based on the following Git diff:
 
 ${load_diff(diff_path)}
         """,
-    **parameters
+        generation_config=generation_config
     )
     print(response.text.strip())
     return response.text
