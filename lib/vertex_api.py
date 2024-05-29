@@ -57,7 +57,7 @@ When working with the Git diff, you only comment on code that has been changed, 
 
 ======= START Git Diff =======
 ${data}
-======= START Git Diff =======
+======= END Git Diff =======
     """
 
 def code_summary(diff_path):

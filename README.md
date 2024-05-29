@@ -28,7 +28,7 @@ docker run friendly-cicd-helper --help
 To use the `friendly-cicd-helper` as a python application you'll need to install the dependencies and then run the application:
 
 ```sh
-pip install -r
+pip install -r requirements.txt
 python friendly-cicd-helper.py --help
 ```
 

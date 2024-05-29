@@ -17,8 +17,15 @@ GIT_DIFF_PATH="$PWD/git.diff"
 As the `friendly-cicd-helper` will use a Vertex AI endpoint in Google Cloud you'll also need to configure the Google Cloud project where the Vertex AI is enabled:
 
 ```sh
-export VERTEX_GCP_PROJECT=
+export VERTEX_GCP_PROJECT=<Your project where the Vertex AI is enabled>
 ```
+
+We'll use the same project as our [GCP Quota Project](https://cloud.google.com/docs/quotas/set-quota-project)
+
+```sh
+export GOOGLE_CLOUD_QUOTA_PROJECT=$VERTEX_GCP_PROJECT
+```
+
 
 ### Generate a Summary for Code Changes
 
@@ -48,13 +55,13 @@ If you used the demo git diff from above this should output something like the f
 - A new example YAML file (`cleanup-policies.yaml`) has been added to demonstrate how to use cleanup policies with the module.
 ```
 
-### Generate a PR/MR Comment
+### Generate a PR/MR Review
 
-You can use the following command to generate comments on the code changes in a Merge Request or Pull Request:
+You can use the following command to generate review comments on the code changes in a Merge Request or Pull Request:
 
 
 ```sh
-python friendly-cicd-helper.py vertex-code-summary --diff $GIT_DIFF_PATH
+python friendly-cicd-helper.py vertex-code-review --diff $GIT_DIFF_PATH
 ```
 If you used the demo git diff from above this should output something like the following:
 
