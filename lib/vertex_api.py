@@ -27,7 +27,7 @@ if os.environ.get("VERTEX_LOCATION")!=None:
 
 vertexai.init(project=os.environ.get("VERTEX_GCP_PROJECT"), location=vertex_location)
 
-model = GenerativeModel("gemini-1.0-pro-002")
+model = GenerativeModel("gemini-1.5-flash-002")
 
 generation_config = {
     "temperature": 0,
